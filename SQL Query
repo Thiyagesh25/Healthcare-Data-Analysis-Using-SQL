@@ -1,0 +1,279 @@
+create database if not exists healthcare;
+use healthcare;
+
+-- Patients table
+CREATE TABLE patients (
+    patient_id INT PRIMARY KEY,
+    patient_name VARCHAR(50),
+    age INT,
+    gender VARCHAR(10),
+    city VARCHAR(50)
+);
+
+-- Doctors table
+CREATE TABLE doctors (
+    doctor_id INT PRIMARY KEY,
+    doctor_name VARCHAR(50),
+    specialization VARCHAR(50),
+    experience_years INT
+);
+
+-- Appointments table
+CREATE TABLE appointments (
+    appointment_id INT PRIMARY KEY,
+    patient_id INT,
+    doctor_id INT,
+    appointment_date DATE,
+    status VARCHAR(20) -- scheduled, completed, canceled
+);
+
+-- Billing table
+CREATE TABLE billing (
+    bill_id INT PRIMARY KEY,
+    appointment_id INT,
+    amount DECIMAL(10,2),
+    payment_status VARCHAR(20) -- paid, pending
+);
+
+-- Patients: 50 rows
+INSERT INTO patients VALUES
+(01,'Alice',25,'Female','Chennai'),
+(02,'Bob',34,'Male','Bangalore'),
+(03,'Charlie',40,'Male','Chennai'),
+(04,'Diana',29,'Female','Hyderabad'),
+(05,'Ethan',55,'Male','Delhi'),
+(06,'Fiona',31,'Female','Mumbai'),
+(07,'George',47,'Male','Chennai'),
+(08,'Hannah',23,'Female','Bangalore'),
+(09,'Ian',38,'Male','Hyderabad'),
+(010,'Jane',44,'Female','Delhi'),
+(011,'Kevin',36,'Male','Mumbai'),
+(012,'Lara',28,'Female','Chennai'),
+(013,'Mike',50,'Male','Bangalore'),
+(014,'Nina',32,'Female','Hyderabad'),
+(015,'Oscar',41,'Male','Delhi'),
+(016,'Paula',27,'Female','Mumbai'),
+(017,'Quentin',39,'Male','Chennai'),
+(018,'Rita',30,'Female','Bangalore'),
+(019,'Steve',45,'Male','Hyderabad'),
+(020,'Tina',26,'Female','Delhi'),
+(021,'Uma',35,'Female','Mumbai'),
+(022,'Victor',42,'Male','Chennai'),
+(023,'Wendy',33,'Female','Bangalore'),
+(024,'Xander',48,'Male','Hyderabad'),
+(025,'Yara',29,'Female','Delhi'),
+(026,'Zane',37,'Male','Mumbai'),
+(027,'Alicia',31,'Female','Chennai'),
+(028,'Brian',46,'Male','Bangalore'),
+(029,'Cathy',28,'Female','Hyderabad'),
+(030,'David',50,'Male','Delhi'),
+(031,'Ella',27,'Female','Mumbai'),
+(032,'Frank',41,'Male','Chennai'),
+(033,'Grace',34,'Female','Bangalore'),
+(034,'Harry',39,'Male','Hyderabad'),
+(035,'Ivy',25,'Female','Delhi'),
+(036,'Jack',44,'Male','Mumbai'),
+(037,'Kelly',30,'Female','Chennai'),
+(038,'Leo',49,'Male','Bangalore'),
+(039,'Mia',26,'Female','Hyderabad'),
+(040,'Nathan',35,'Male','Delhi'),
+(041,'Olivia',33,'Female','Mumbai'),
+(042,'Peter',42,'Male','Chennai'),
+(043,'Queen',29,'Female','Bangalore'),
+(044,'Ryan',38,'Male','Hyderabad'),
+(045,'Sophia',31,'Female','Delhi'),
+(046,'Tom',47,'Male','Mumbai'),
+(047,'Usha',28,'Female','Chennai'),
+(048,'Vikram',40,'Male','Bangalore'),
+(049,'Will',36,'Male','Hyderabad'),
+(050,'Yvonne',27,'Female','Delhi');
+
+-- Doctors: 10 rows
+INSERT INTO doctors VALUES
+(1,'Dr. Sharma','Cardiology',15),
+(2,'Dr. Iyer','Neurology',12),
+(3,'Dr. Gupta','Orthopedics',20),
+(4,'Dr. Reddy','Pediatrics',10),
+(5,'Dr. Mehta','Dermatology',8),
+(6,'Dr. Singh','ENT',18),
+(7,'Dr. Kapoor','Gynecology',14),
+(8,'Dr. Das','General Medicine',16),
+(9,'Dr. Bose','Ophthalmology',11),
+(10,'Dr. Jain','Psychiatry',9);
+
+-- Appointments: 50 rows (linking patients and doctors)
+INSERT INTO appointments VALUES
+(1,1,1,'2025-10-01','completed'),
+(2,2,2,'2025-10-02','completed'),
+(3,3,3,'2025-10-03','canceled'),
+(4,4,4,'2025-10-04','completed'),
+(5,5,5,'2025-10-05','scheduled'),
+(6,6,6,'2025-10-06','completed'),
+(7,7,7,'2025-10-07','completed'),
+(8,8,8,'2025-10-08','canceled'),
+(9,9,9,'2025-10-09','completed'),
+(10,10,10,'2025-10-10','scheduled'),
+(11,11,1,'2025-10-11','completed'),
+(12,12,2,'2025-10-12','completed'),
+(13,13,3,'2025-10-13','completed'),
+(14,14,4,'2025-10-14','canceled'),
+(15,15,5,'2025-10-15','completed'),
+(16,16,6,'2025-10-16','scheduled'),
+(17,17,7,'2025-10-17','completed'),
+(18,18,8,'2025-10-18','completed'),
+(19,19,9,'2025-10-19','completed'),
+(20,20,10,'2025-10-20','canceled'),
+(21,21,1,'2025-10-21','completed'),
+(22,22,2,'2025-10-22','completed'),
+(23,23,3,'2025-10-23','completed'),
+(24,24,4,'2025-10-24','scheduled'),
+(25,25,5,'2025-10-25','scheduled'),
+(26,26,6,'2025-10-26','scheduled'),
+(27,27,7,'2025-10-27','scheduled'),
+(28,28,8,'2025-10-28','canceled'),
+(29,29,9,'2025-10-29','scheduled'),
+(30,30,10,'2025-10-30','scheduled'),
+(31,31,1,'2025-10-31','scheduled'),
+(32,32,2,'2025-11-01','completed'),
+(33,33,3,'2025-11-02','completed'),
+(34,34,4,'2025-11-03','completed'),
+(35,35,5,'2025-11-04','completed'),
+(36,36,6,'2025-11-05','scheduled'),
+(37,37,7,'2025-11-06','completed'),
+(38,38,8,'2025-11-07','completed'),
+(39,39,9,'2025-11-08','completed'),
+(40,40,10,'2025-11-09','completed'),
+(41,41,1,'2025-11-10','completed'),
+(42,42,2,'2025-11-11','completed'),
+(43,43,3,'2025-11-12','completed'),
+(44,44,4,'2025-11-13','canceled'),
+(45,45,5,'2025-11-14','completed'),
+(46,46,6,'2025-11-15','completed'),
+(47,47,7,'2025-11-16','completed'),
+(48,48,8,'2025-11-17','completed'),
+(49,49,9,'2025-11-18','completed'),
+(50,50,10,'2025-11-19','scheduled');
+
+-- Billing: 50 rows
+INSERT INTO billing VALUES
+(1,1,500.00,'paid'),
+(2,2,750.00,'paid'),
+(3,3,300.00,'pending'),
+(4,4,450.00,'paid'),
+(5,5,600.00,'pending'),
+(6,6,550.00,'paid'),
+(7,7,700.00,'paid'),
+(8,8,400.00,'pending'),
+(9,9,650.00,'paid'),
+(10,10,500.00,'pending'),
+(11,11,520.00,'paid'),
+(12,12,480.00,'paid'),
+(13,13,600.00,'paid'),
+(14,14,350.00,'pending'),
+(15,15,700.00,'paid'),
+(16,16,450.00,'pending'),
+(17,17,800.00,'paid'),
+(18,18,500.00,'paid'),
+(19,19,650.00,'paid'),
+(20,20,400.00,'pending'),
+(21,21,550.00,'paid'),
+(22,22,620.00,'paid'),
+(23,23,700.00,'pending'),
+(24,24,480.00,'paid'),
+(25,25,530.00,'paid'),
+(26,26,600.00,'paid'),
+(27,27,700.00,'paid'),
+(28,28,350.00,'pending'),
+(29,29,450.00,'paid'),
+(30,30,500.00,'paid'),
+(31,31,550.00,'pending'),
+(32,32,620.00,'paid'),
+(33,33,700.00,'paid'),
+(34,34,480.00,'paid'),
+(35,35,530.00,'paid'),
+(36,36,600.00,'pending'),
+(37,37,700.00,'paid'),
+(38,38,350.00,'paid'),
+(39,39,450.00,'paid'),
+(40,40,500.00,'paid'),
+(41,41,550.00,'paid'),
+(42,42,620.00,'paid'),
+(43,43,700.00,'paid'),
+(44,44,480.00,'pending'),
+(45,45,530.00,'paid'),
+(46,46,600.00,'paid'),
+(47,47,700.00,'paid'),
+(48,48,350.00,'paid'),
+(49,49,450.00,'paid'),
+(50,50,500.00,'pending');
+
+SELECT a.appointment_id, p.patient_id, p.patient_name, d.doctor_id, d.doctor_name,
+       a.appointment_date, a.status
+FROM appointments a
+JOIN patients p ON a.patient_id = p.patient_id
+JOIN doctors d  ON a.doctor_id  = d.doctor_id
+ORDER BY a.appointment_date;
+
+SELECT d.doctor_name, COUNT(DISTINCT a.appointment_id) AS appointments_count,
+       COALESCE(SUM(b.amount),0) AS total_revenue
+FROM doctors d
+LEFT JOIN appointments a ON d.doctor_id = a.doctor_id
+LEFT JOIN billing b      ON a.appointment_id = b.appointment_id
+GROUP BY d.doctor_name
+ORDER BY total_revenue DESC;
+
+SELECT DISTINCT p.patient_id, p.patient_name, b.payment_status, SUM(b.amount) AS total_due
+FROM patients p
+JOIN appointments a ON p.patient_id = a.patient_id
+JOIN billing b      ON a.appointment_id = b.appointment_id
+WHERE b.payment_status = 'pending'
+GROUP BY p.patient_id, p.patient_name, b.payment_status
+ORDER BY total_due DESC;
+
+SELECT d.doctor_name, AVG(p.age) AS avg_age, COUNT(p.patient_id) AS patients_count
+FROM doctors d
+JOIN appointments a ON d.doctor_id = a.doctor_id
+JOIN patients p     ON a.patient_id = p.patient_id
+GROUP BY d.doctor_name
+ORDER BY patients_count DESC;
+
+SELECT p.patient_id, p.patient_name, SUM(b.amount) AS total_billed
+FROM patients p
+JOIN appointments a ON p.patient_id = a.patient_id
+JOIN billing b      ON a.appointment_id = b.appointment_id
+GROUP BY p.patient_id, p.patient_name
+ORDER BY total_billed DESC
+LIMIT 5;
+
+SELECT doctor_id, doctor_name, completed_count,
+       RANK() OVER (ORDER BY completed_count DESC) AS rank_by_completed
+FROM (
+    SELECT d.doctor_id, d.doctor_name, COUNT(*) AS completed_count
+    FROM doctors d
+    JOIN appointments a ON d.doctor_id = a.doctor_id
+    WHERE a.status = 'completed'
+    GROUP BY d.doctor_id, d.doctor_name
+) t;
+
+SELECT patient_id, patient_name, total_billed,
+       DENSE_RANK() OVER (ORDER BY total_billed DESC) AS billed_rank
+FROM (
+    SELECT p.patient_id, p.patient_name, COALESCE(SUM(b.amount),0) AS total_billed
+    FROM patients p
+    LEFT JOIN appointments a ON p.patient_id = a.patient_id
+    LEFT JOIN billing b      ON a.appointment_id = b.appointment_id
+    GROUP BY p.patient_id, p.patient_name
+) t
+ORDER BY total_billed DESC;
+
+SELECT p.city, COUNT(DISTINCT a.appointment_id) AS appointment_count, SUM(b.amount) AS total_revenue
+FROM patients p
+JOIN appointments a ON p.patient_id = a.patient_id
+JOIN billing b      ON a.appointment_id = b.appointment_id
+GROUP BY p.city
+ORDER BY total_revenue DESC;
+
+
+
+
+
