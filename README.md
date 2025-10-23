@@ -43,5 +43,8 @@ This project demonstrates how SQL is used to analyze healthcare data — includi
 **Thiyagesh R S**  
 Aspiring Healthcare Data Analyst  
  SQL | Python | Power BI  
-🔗 [LinkedIn](https://www.linkedin.com/)  
+🔗 [LinkedIn](https://www.linkedin.com/in/
+thiyagesh26)
+
+  
 
